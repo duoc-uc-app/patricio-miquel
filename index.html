@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es" class="bg-slate-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#7c3aed" />
+  <title>DuocUC App | Patricio Miquel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            duoc: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+            }
+          },
+          fontFamily: {
+            sans: ['Poppins', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body { -webkit-tap-highlight-color: transparent; }
+    .screen { animation: fadeIn .35s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .press:active { transform: scale(.97); }
+  </style>
+</head>
+<body class="font-sans antialiased">
+  <!-- App container (mobile frame) -->
+  <div class="mx-auto min-h-screen max-w-md bg-slate-100 relative overflow-hidden shadow-xl">
+
+    <!-- ============ HOME SCREEN ============ -->
+    <section id="screen-home" class="screen pb-28">
+      <!-- Header -->
+      <header class="bg-gradient-to-br from-duoc-400 to-duoc-600 px-5 pt-12 pb-16 rounded-b-[2.5rem] relative">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="h-14 w-14 rounded-full bg-white flex items-center justify-center shadow-md">
+              <span class="text-duoc-700 font-extrabold text-lg">JS</span>
+            </div>
+            <div>
+              <h1 class="text-white font-extrabold text-2xl leading-tight">¡Hola Jasen!</h1>
+              <p class="text-duoc-100 text-sm font-medium">Alumno</p>
+            </div>
+          </div>
+          <button onclick="showScreen('credential')" aria-label="Ver credencial digital"
+            class="press h-12 w-12 rounded-2xl bg-white flex items-center justify-center shadow-md transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M14 9h4M14 13h4M6 16h12"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Career card (overlapping) -->
+      <div class="px-5 -mt-9 relative z-10">
+        <button onclick="showScreen('career')"
+          class="press w-full bg-white rounded-2xl shadow-lg px-4 py-4 flex items-center gap-4 transition">
+          <div class="h-12 w-12 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/>
+            </svg>
+          </div>
+          <div class="text-left flex-1 min-w-0">
+            <h2 class="font-bold text-slate-800 leading-tight">Ing. en Administración de Empresas</h2>
+            <p class="text-slate-500 text-sm">Alumno Regular</p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+      </div>
+
+      <!-- Featured card -->
+      <div class="px-5 mt-6">
+        <article class="bg-white rounded-2xl shadow-md p-5">
+          <div class="h-12 w-12 rounded-xl bg-duoc-50 flex items-center justify-center text-2xl mb-4">💼</div>
+          <h3 class="text-xl font-extrabold text-slate-900 leading-snug">🚀 Prepárate para tu práctica o primer trabajo con apoyo gratuito</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mt-3">
+            ¿Buscas práctica profesional o tu próximo desafío laboral? El Programa de Acompañamiento Laboral (PAL) te ofrece asesorías online gratuitas con profesionales que te ayudarán a fortalecer tu perfil y enfrentar procesos de selección con mayor confianza. ✨
+          </p>
+          <button onclick="toast('¡Inscripción abierta al PAL!')" class="press mt-5 w-full bg-duoc-700 text-white font-bold py-4 rounded-2xl shadow transition">
+            Conoce más aquí
+          </button>
+        </article>
+      </div>
+
+      <!-- Calendar section -->
+      <div class="px-5 mt-6">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-extrabold text-slate-800 text-lg">Lun, 9 de Junio</h3>
+          <button onclick="toast('Abriendo calendario...')" class="text-duoc-700 font-semibold text-sm underline">Ver calendario</button>
+        </div>
+        <div class="space-y-3">
+          <div class="bg-white rounded-2xl shadow-sm p-4 flex items-center gap-4">
+            <div class="text-center w-12 shrink-0">
+              <p class="text-duoc-700 font-extrabold text-lg leading-none">08:30</p>
+              <p class="text-slate-400 text-xs">AM</p>
+            </div>
+            <div class="w-px h-10 bg-slate-200"></div>
+            <div>
+              <p class="font-semibold text-slate-800 text-sm">Contabilidad General</p>
+              <p class="text-slate-500 text-xs">Sala 304 · Edificio Central</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl shadow-sm p-4 flex items-center gap-4">
+            <div class="text-center w-12 shrink-0">
+              <p class="text-duoc-700 font-extrabold text-lg leading-none">11:00</p>
+              <p class="text-slate-400 text-xs">AM</p>
+            </div>
+            <div class="w-px h-10 bg-slate-200"></div>
+            <div>
+              <p class="font-semibold text-slate-800 text-sm">Gestión de Personas</p>
+              <p class="text-slate-500 text-xs">Sala 210 · Laboratorio B</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CAREER SCREEN ============ -->
+    <section id="screen-career" class="screen hidden pb-28">
+      <header class="bg-white px-5 pt-12 pb-4 flex items-center gap-4 shadow-sm sticky top-0 z-20">
+        <button onclick="showScreen('home')" aria-label="Volver" class="press p-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7M5 12h14"/></svg>
+        </button>
+        <h1 class="text-xl font-extrabold text-slate-900">Mi Carrera</h1>
+      </header>
+
+      <div class="px-5 pt-5">
+        <div class="bg-gradient-to-br from-duoc-500 to-duoc-700 rounded-3xl p-6 text-white shadow-lg">
+          <p class="text-duoc-100 text-sm font-medium">Escuela de Administración y Negocios</p>
+          <h2 class="text-2xl font-extrabold mt-1 leading-tight">Ingeniería en Administración de Empresas</h2>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="bg-white/20 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold">Sede Concepción</span>
+            <span class="bg-white/20 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold">Alumno Regular</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="px-5 mt-5">
+        <div class="bg-white rounded-2xl shadow-sm p-5">
+          <div class="flex items-center justify-between mb-2">
+            <p class="font-bold text-slate-800">Avance de la carrera</p>
+            <span class="text-duoc-700 font-extrabold">62%</span>
+          </div>
+          <div class="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
+            <div class="h-full bg-duoc-600 rounded-full" style="width:62%"></div>
+          </div>
+          <p class="text-slate-500 text-xs mt-2">Semestre 5 de 8 · 28 asignaturas aprobadas</p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="px-5 mt-5 grid grid-cols-3 gap-3">
+        <div class="bg-white rounded-2xl shadow-sm p-4 text-center">
+          <p class="text-2xl font-extrabold text-duoc-700">6.2</p>
+          <p class="text-slate-500 text-xs mt-1">Promedio</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-4 text-center">
+          <p class="text-2xl font-extrabold text-duoc-700">28</p>
+          <p class="text-slate-500 text-xs mt-1">Aprobadas</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm p-4 text-center">
+          <p class="text-2xl font-extrabold text-duoc-700">4</p>
+          <p class="text-slate-500 text-xs mt-1">En curso</p>
+        </div>
+      </div>
+
+      <!-- Subjects -->
+      <div class="px-5 mt-6">
+        <h3 class="font-extrabold text-slate-800 text-lg mb-3">Asignaturas en curso</h3>
+        <div class="space-y-3" id="subjects-list"></div>
+      </div>
+
+      <div class="px-5 mt-6">
+        <button onclick="showScreen('credential')" class="press w-full bg-duoc-700 text-white font-bold py-4 rounded-2xl shadow transition flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M14 9h4M14 13h4"/></svg>
+          Ver mi credencial digital
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ CREDENTIAL / PROFILE SCREEN ============ -->
+    <section id="screen-credential" class="screen hidden pb-28">
+      <header class="bg-white px-5 pt-12 pb-4 flex items-center gap-4 shadow-sm sticky top-0 z-20">
+        <button onclick="goBack()" aria-label="Volver" class="press p-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7M5 12h14"/></svg>
+        </button>
+        <h1 class="text-xl font-extrabold text-slate-900">Credencial Digital</h1>
+      </header>
+
+      <!-- Credential card -->
+      <div class="px-5 pt-6">
+        <div class="bg-gradient-to-br from-duoc-400 to-duoc-600 rounded-3xl p-7 shadow-xl text-white relative overflow-hidden">
+          <div class="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10"></div>
+          <div class="absolute -left-10 -bottom-10 h-36 w-36 rounded-full bg-white/10"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-6">
+              <img src="images/duouc.png" alt="Logo DuocUC" class="h-12 w-12 rounded-xl bg-white/95 object-contain p-1 shadow-sm" />
+              <div class="flex items-end gap-1.5">
+                <span class="text-3xl font-extrabold tracking-tight">DuocUC</span>
+                <span class="text-xs mb-1.5">®</span>
+              </div>
+            </div>
+            <h2 class="text-3xl font-extrabold leading-tight">Patricio Miquel Cabezas</h2>
+
+            <div class="mt-6 space-y-4">
+              <div>
+                <p class="text-duoc-100 text-sm">Escuela</p>
+                <p class="font-bold text-lg leading-snug">Administración y Negocios</p>
+              </div>
+              <div>
+                <p class="text-duoc-100 text-sm">Programa</p>
+                <p class="font-bold text-lg leading-snug">Ingeniería en Administración de Empresas</p>
+              </div>
+              <div>
+                <p class="text-duoc-100 text-sm">Sede</p>
+                <p class="font-bold text-lg">CONCEPCIÓN</p>
+              </div>
+            </div>
+
+            <div class="mt-7 bg-white rounded-2xl p-3 flex items-center justify-between">
+              <div class="pl-1">
+                <p class="text-slate-400 text-[11px] uppercase tracking-wide">RUT</p>
+                <p class="text-slate-900 font-extrabold text-lg">20.917.195-3</p>
+              </div>
+              <div class="h-14 w-14 bg-slate-900 rounded-lg flex items-center justify-center" aria-hidden="true">
+                <div class="grid grid-cols-4 gap-0.5">
+                  <span class="h-1.5 w-1.5 bg-white"></span><span class="h-1.5 w-1.5 bg-transparent"></span><span class="h-1.5 w-1.5 bg-white"></span><span class="h-1.5 w-1.5 bg-white"></span>
+                  <span class="h-1.5 w-1.5 bg-transparent"></span><span class="h-1.5 w-1.5 bg-white"></span><span class="h-1.5 w-1.5 bg-transparent"></span><span class="h-1.5 w-1.5 bg-white"></span>
+                  <span class="h-1.5 w-1.5 bg-white"></span><span class="h-1.5 w-1.5 bg-white"></span><span class="h-1.5 w-1.5 bg-transparent"></span><span class="h-1.5 w-1.5 bg-transparent"></span>
+                  <span class="h-1.5 w-1.5 bg-white"></span><span class="h-1.5 w-1.5 bg-transparent"></span><span class="h-1.5 w-1.5 bg-white"></span><span class="h-1.5 w-1.5 bg-white"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal data -->
+      <div class="px-5 mt-6">
+        <h3 class="font-extrabold text-slate-800 text-lg mb-3">Datos del alumno</h3>
+        <div class="bg-white rounded-2xl shadow-sm divide-y divide-slate-100">
+          <div class="flex items-center justify-between px-4 py-4">
+            <span class="text-slate-500 text-sm">Nombre completo</span>
+            <span class="font-semibold text-slate-800 text-sm text-right">Patricio Miquel Cabezas</span>
+          </div>
+          <div class="flex items-center justify-between px-4 py-4">
+            <span class="text-slate-500 text-sm">RUT</span>
+            <span class="font-semibold text-slate-800 text-sm">20.917.195-3</span>
+          </div>
+          <div class="flex items-center justify-between px-4 py-4">
+            <span class="text-slate-500 text-sm">Carrera</span>
+            <span class="font-semibold text-slate-800 text-sm text-right">Ing. en Adm. de Empresas</span>
+          </div>
+          <div class="flex items-center justify-between px-4 py-4">
+            <span class="text-slate-500 text-sm">Sede</span>
+            <span class="font-semibold text-slate-800 text-sm">Concepción</span>
+          </div>
+          <div class="flex items-center justify-between px-4 py-4">
+            <span class="text-slate-500 text-sm">Estado</span>
+            <span class="bg-green-100 text-green-700 font-semibold text-xs px-3 py-1 rounded-full">Alumno Regular</span>
+          </div>
+          <div class="flex items-center justify-between px-4 py-4">
+            <span class="text-slate-500 text-sm">Correo institucional</span>
+            <span class="font-semibold text-slate-800 text-sm">p.miquel@duocuc.cl</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BOTTOM NAV ============ -->
+    <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white border-t border-slate-100 px-6 py-3 flex items-center justify-between rounded-t-3xl shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30">
+      <button onclick="showScreen('home')" data-nav="home" aria-label="Inicio" class="press nav-btn flex flex-col items-center gap-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+      </button>
+      <button onclick="toast('Calendario académico')" aria-label="Calendario" class="press nav-btn flex flex-col items-center gap-1 text-slate-400">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      </button>
+      <button onclick="showScreen('career')" data-nav="career" aria-label="Mi carrera" class="press nav-btn flex flex-col items-center gap-1 text-slate-400">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </button>
+      <button onclick="toast('No tienes notificaciones nuevas')" aria-label="Notificaciones" class="press nav-btn flex flex-col items-center gap-1 text-slate-400">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      </button>
+      <button onclick="showScreen('credential')" data-nav="credential" aria-label="Credencial" class="press nav-btn flex flex-col items-center gap-1 text-slate-400">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M14 9h4M14 13h4"/></svg>
+      </button>
+    </nav>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-sm font-medium px-5 py-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50"></div>
+  </div>
+
+  <script>
+    const screens = ['home', 'career', 'credential'];
+    let current = 'home';
+    let previous = 'home';
+
+    function showScreen(name) {
+      previous = current;
+      current = name;
+      screens.forEach(s => {
+        document.getElementById('screen-' + s).classList.toggle('hidden', s !== name);
+      });
+      // re-trigger animation
+      const el = document.getElementById('screen-' + name);
+      el.classList.remove('screen'); void el.offsetWidth; el.classList.add('screen');
+      // nav highlight
+      document.querySelectorAll('.nav-btn').forEach(b => {
+        const active = b.dataset.nav === name;
+        b.classList.toggle('text-duoc-700', active);
+        b.classList.toggle('text-slate-400', !active);
+      });
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    function goBack() {
+      showScreen(previous && previous !== current ? previous : 'home');
+    }
+
+    let toastTimer;
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.opacity = '1';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.style.opacity = '0', 2200);
+    }
+
+    // Render subjects
+    const subjects = [
+      { name: 'Contabilidad General', code: 'CON301', color: 'bg-duoc-100 text-duoc-700' },
+      { name: 'Gestión de Personas', code: 'GPE204', color: 'bg-amber-100 text-amber-700' },
+      { name: 'Marketing Estratégico', code: 'MKT310', color: 'bg-sky-100 text-sky-700' },
+      { name: 'Finanzas Corporativas', code: 'FIN305', color: 'bg-emerald-100 text-emerald-700' },
+    ];
+    document.getElementById('subjects-list').innerHTML = subjects.map(s => `
+      <div class="bg-white rounded-2xl shadow-sm p-4 flex items-center gap-4">
+        <div class="h-11 w-11 rounded-xl ${s.color} flex items-center justify-center font-bold text-xs">${s.code.slice(0,3)}</div>
+        <div class="flex-1">
+          <p class="font-semibold text-slate-800 text-sm">${s.name}</p>
+          <p class="text-slate-400 text-xs">${s.code}</p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+    `).join('');
+
+    // init nav highlight
+    showScreen('home');
+  </script>
+</body>
+</html>
